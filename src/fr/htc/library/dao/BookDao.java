@@ -1,6 +1,7 @@
 package fr.htc.library.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import fr.htc.library.entity.Book;
@@ -8,9 +9,10 @@ import fr.htc.library.entity.Book;
 public class BookDao {
 	
 	
-	public void save(Book book) {
+	public Book save(Book book) {
 		
 		LibraryDatabase.getBookTable().put(book.getCote(), book);
+		return LibraryDatabase.getBookTable().get(book.getCote());
 	}
 	
 	
@@ -22,8 +24,8 @@ public class BookDao {
 	}
 	
 	
-	public List<Book> getAllBook() {
-		return new ArrayList<Book>(LibraryDatabase.getBookTable().values());
+	public Collection<Book> getAllBook() {
+		return LibraryDatabase.getBookTable().values();
 	}
 	
 	

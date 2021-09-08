@@ -18,10 +18,5 @@ public class LibraryDatabase {
 	public static Map<String, Book> getBookTable() {
 		return bookTable;
 	}
-	
-	
-	public void save (Book book) {
-		bookTable.put(book.getCote(), book);
-	}
 
 }
