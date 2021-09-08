@@ -23,5 +23,8 @@ public class LibraryDatabase {
 	public void save (Book book) {
 		bookTable.put(book.getCote(), book);
 	}
+	public void save (Member member) {
+		memberTable.put(member.getMatricule(), member);
+	}
 
 }
