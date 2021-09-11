@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.htc.library.dao.BookDao;
 import fr.htc.library.entity.Book;
+import fr.htc.library.entity.Member;
 
 public class BookService {
 
@@ -23,7 +24,8 @@ public class BookService {
 			System.out.println("Save book aborted : Edition year is mandatory!!! : " + editionYear);
 			return null;
 		}
-		//Arrivée ici: je peut enfin créer un livre
+		//Arrivee ici: je peut enfin creer un livre
+		
 		Book book = new Book(title, author, editionYear);
 		
 		Book savedBook = bookDao.save(book);
@@ -35,5 +37,12 @@ public class BookService {
 		ArrayList<Book> bookList = new ArrayList<>(bookDao.getAllBook());
 		return bookList;
 	}
+
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

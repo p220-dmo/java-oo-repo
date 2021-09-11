@@ -1,12 +1,15 @@
 package fr.htc.library.entity;
 
+import java.util.List;
+
 public class Book {
 	private static int cpt = 10;
 	private String cote;
 	private String title;
 	private String author;
 	private int editionYear;
-
+	private boolean checkin ;
+	
 	public Book(String title, String author, int editionYear) {
 		this.title = title;
 		this.author = author;
@@ -55,10 +58,29 @@ public class Book {
 	public String getCote() {
 		return cote;
 	}
+	
+	public void checkin() {
+		this.checkin = true;
+	}
+	
+	public void checkout() {
+		this.checkin = false;
+	}
+	
+	public boolean isCheckin( ) {
+		return this.checkin;
+	}
 
 	@Override
 	public String toString() {
-		return "Book [cote=" + cote + ", title=" + title + ", author=" + author + ", editionYear=" + editionYear + "]";
+		return "Book [cote=" + cote + ", title=" + title + ", author=" + author + ", editionYear=" + editionYear
+				+ ", checkin=" + checkin + "]";
 	}
 
+	public List<Book> getListCheckin() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

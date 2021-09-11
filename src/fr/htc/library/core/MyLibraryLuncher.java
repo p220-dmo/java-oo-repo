@@ -1,66 +1,104 @@
 package fr.htc.library.core;
+import java.io.PrintWriter; // Step 1
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.util.List;
 
 import fr.htc.library.entity.Book;
+import fr.htc.library.entity.Member;
 import fr.htc.library.services.BookService;
+import fr.htc.library.services.MemberService;
 
 public class MyLibraryLuncher {
+	
 	private static BookService bookService = new BookService();
+	private static MemberService memberService = new MemberService();
+	
+	public static void main(String[] args) throws FileNotFoundException {
+		
+        PrintWriter out = new PrintWriter("file.txt"); 
 
-	public static void main(String[] args) {
 		//testSaveBook();
 
 		initDatabase();
 
-		System.out.println("Voici la liste des livre enregistrés en base : ");
+		System.out.println("Voici la liste des livre enregistrÃ©s en base : ");
 
 		List<Book> books = bookService.findAllBooks();
 		for (Book book : books) {
 			System.out.println(book);
 		}
-	}
 
+		System.out.println("\nVoici la liste des membres enregistrÃ©s en base : ");
+		
+		List<Member> members = memberService.findAllMembers();
+		for(Member member : members) {
+			System.out.println(member);
+		}
+	}
+	
+		
 	private static void initDatabase() {
-		insertBookData();
 		insertMemberData();
+		insertBookData();
+	
 	}
 
 	private static void insertMemberData() {
 		// TODO Auto-generated method stub
+		memberService.save("RÃ©becca", "Armand", 24, 2);
+		memberService.save("AimÃ©e", "Hebert", 36, 2);
+		memberService.save("Marielle", "Ribeiro", 27, 0);
+		memberService.save("Hilaire", "Savary", 58, 0);
+		memberService.save("RÃ©becca", "Armand", 24, 0);
+		memberService.save("AimÃ©e", "Hebert", 36, 0);
+		memberService.save("Marielle", "Ribeiro", 27,1);
+		memberService.save("Hilaire", "Savary", 58,4);
+		memberService.save("RÃ©becca", "Armand", 24,5);
+		memberService.save("AimÃ©e", "Hebert", 36,2);
+		memberService.save("Marielle", "Ribeiro", 27,2);
+		memberService.save("Hilaire", "Savary", 58,5);
+		memberService.save("RÃ©becca", "Armand", 24,1);
+		memberService.save("AimÃ©e", "Hebert", 12,3);
+		memberService.save("Marielle", "Ribeiro", 27,0);
+		memberService.save("Hilaire", "Savary", 58,0);
+		memberService.save("RÃ©becca", "Armand", 24,2);
+		
+        memberService.close();
 
 	}
-
-	private static void insertBookData() {
+		
+private static void insertBookData() {
 		bookService.save("Titre_200a", "Auteur_principal_qualificatif_700c", 2011);
-		bookService.save("L'eau des anges", "Egémar Béatrice", 2011);
+		bookService.save("L'eau des anges", "Egï¿½mar Bï¿½atrice", 2011);
 		bookService.save("Quand on parle du loup", "Harrison Lisi", 2011);
-		bookService.save("étang aux libellules (L')", "Ibbotson Eva", 2011);
-		bookService.save("Avant les ténèbres", "Cluzeau Nicolas", 2009);
+		bookService.save("ï¿½tang aux libellules (L')", "Ibbotson Eva", 2011);
+		bookService.save("Avant les tï¿½nï¿½bres", "Cluzeau Nicolas", 2009);
 		bookService.save("La boussole du Club des cinq", "Blyton Enid", 2009);
 		bookService.save("Momo", "Ende Michael", 2011);
 		bookService.save("Je m'appelle pas Ben Laden !", "Chambaz Bernard", 2011);
 		bookService.save("Ogres, brigands et compagnie", "Ungerer Tomi", 2003);
 		bookService.save("Gauchos de Patagonie", "Bourseiller Philippe", 2011);
-		bookService.save("A minuit", "Mörike Eduard", 2011);
-		bookService.save("Les cinq mènent l'enquête", "Voilier Claude", 2010);
+		bookService.save("A minuit", "Mï¿½rike Eduard", 2011);
+		bookService.save("Les cinq mï¿½nent l'enquï¿½te", "Voilier Claude", 2010);
 		bookService.save("Jeanne", "Cassabois Jacques", 2004);
 		bookService.save("Radio Nouba", "Bonneval Gwen de", 2007);
-		bookService.save("Emile et les détectives", "Kästner Erich", 2004);
+		bookService.save("Emile et les dï¿½tectives", "Kï¿½stner Erich", 2004);
 		bookService.save("On voyage", "Helft Claude", 2011);
 		bookService.save("Nous les filles !", "Delmege Sarah", 2004);
 		bookService.save("Radio Nouba", "Bonneval Gwen de", 2011);
-		bookService.save("Nous les garçons !", "Crossick Matt", 2004);
-		bookService.save("On prend des médicaments", "Helft Claude", 2004);
+		bookService.save("Nous les garï¿½ons !", "Crossick Matt", 2004);
+		bookService.save("On prend des mï¿½dicaments", "Helft Claude", 2004);
 		bookService.save("Profession, pirate !", "Aubrun Claudine", 2004);
-		bookService.save("La mer", "Bélineau Nathalie", 2004);
+		bookService.save("La mer", "Bï¿½lineau Nathalie", 2004);
 		bookService.save("La ligne de front", "Larcenet Manu", 2004);
-		bookService.save("J'apprends à dessiner la vie quotidienne", "Legendre-Kvater Philippe", 2004);
+		bookService.save("J'apprends ï¿½ dessiner la vie quotidienne", "Legendre-Kvater Philippe", 2004);
 		bookService.save("Collages de serviettes pour le jardin et la maison", "Enderlen-Debuisson Marie", 2003);
 		bookService.save("Argile au tour", "Tardio-Brise Liliane", 2003);
-		bookService.save("Petite histoire de la France au 20e siècle", "Prost Antoine", 2002);
-		bookService.save("Les chevêches aux yeux d'or", "Haroux-Métayer Eliane", 2004);
-		bookService.save("On rêve d'avoir un chat", "Helft Claude", 2004);
+		bookService.save("Petite histoire de la France au 20e siï¿½cle", "Prost Antoine", 2002);
+		bookService.save("Les chevï¿½ches aux yeux d'or", "Haroux-Mï¿½tayer Eliane", 2004);
+		bookService.save("On rï¿½ve d'avoir un chat", "Helft Claude", 2004);
 		bookService.save("Les grands explorateurs", "Platt Richard", 2004);
 		bookService.save("Mythes et monstres", "Buller Laura", 2004);
 		bookService.save("Les gladiateurs", "Malam John", 2015);
@@ -68,16 +106,20 @@ public class MyLibraryLuncher {
 		bookService.save("ABC d'Albert Jacquard pour changer le monde (L')", "Jacquard Albert", 2014);
 		bookService.save("arc-en-ciel des familles (L')", "Douru Muriel", 2015);
 		bookService.save("I like Europe", "Gillet Caroline", 2010);
-		bookService.save("fables de La Fontaine pour réfléchir (Les)", "Pelisse Laetitia", 1987);
+		bookService.save("fables de La Fontaine pour rï¿½flï¿½chir (Les)", "Pelisse Laetitia", 1987);
 		bookService.save("Vieux metiers et pratiques oubliees en Bourgogne, Nivernais-Morvan, autrefois",
 				"Bertheau Georges", 2013);
 		bookService.save("changelin (Le)", "Lindhom Per August", 19);
 		bookService.save("Meurtre au champagne", "Christie Agatha", 2005);
+	   
+        bookService.close();
+
 	}
+	
 
 	private static void testSaveBook() {
 		// Test : Cas nominal : OK
-		Book savedBook = bookService.save("Ce que le jour doit à la nuit", "Rachid", 2005);
+		Book savedBook = bookService.save("Ce que le jour doit ï¿½ la nuit", "Rachid", 2005);
 		if (savedBook != null) {
 			System.out.println("Book created successfully...");
 		} else {
@@ -93,7 +135,7 @@ public class MyLibraryLuncher {
 		}
 
 		// Test : Cas title == null : KO
-		Book savedBook3 = bookService.save("Ce que le jour doit à la nuit", null, 2005);
+		Book savedBook3 = bookService.save("Ce que le jour doit ï¿½ la nuit", null, 2005);
 		if (savedBook3 != null) {
 			System.out.println("Book created successfully...");
 		} else {
@@ -101,13 +143,40 @@ public class MyLibraryLuncher {
 		}
 
 		// Test : Cas year = 0 : KO
-		Book savedBook4 = bookService.save("Ce que le jour doit à la nuit", "Rachid", 1801);
+		Book savedBook4 = bookService.save("Ce que le jour doit ï¿½ la nuit", "Rachid", 1801);
 		if (savedBook4 != null) {
 			System.out.println("Book created successfully...");
 		} else {
 			System.out.println("Book not created yet...");
 		}
-
 	}
+	
+		private static void testSaveMember() {
+		
+		//test : cas nom ==null 
+		
+		Member savedMember = memberService.save("Hilaire", "Savary", 58,0);
+		
+		if (savedMember != null) {
+		
+			System.out.println("Member created successfully...");
+		} 
+		else {
+			System.out.println("Member not created yet...");
+		}
+		}
+		//test : cas prenom == null 
+		
+		
+		//test : cas age <18
+		//test : par numÃ©ro de cote 
+	
+		private static void testCheckinBook() {
+			
+		}
+		}
 
-}
+			//test : par numÃ©ro de matricule 
+
+
+

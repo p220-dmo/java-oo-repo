@@ -7,12 +7,19 @@ public class Member {
 	private String nom;
 	private String prenom;
 	private int age;
+	private int nbCheckin = 0;
+	private int nbTotalCheckin;
+	private int nbMaxCheckin = 3; 
+	
 
-	public Member(String nom, String prenom, int age) {
+
+	public Member(String nom, String prenom, int age,int nbTotalCheckin) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.age = age;
 		this.matricule = generateMatricule();
+		this.nbTotalCheckin = nbTotalCheckin;
+	
 	}
 
 	private String generateMatricule() {
@@ -46,11 +53,37 @@ public class Member {
 	public String getMatricule() {
 		return matricule;
 	}
+	
+
+	public int getNbTotalCheckin() {
+		return nbTotalCheckin;
+	}
+
+	public void setNbTotalCheckin(int nbTotalCheckin) {
+		this.nbTotalCheckin = nbTotalCheckin;
+	}
+
+	public int getNbCheckin() {
+		return nbCheckin;
+	}
+
+	public void setNbCheckin(int nbCheckin) {
+		this.nbCheckin = nbCheckin;
+	}
+
+	public int getNbMaxCheckin() {
+		return nbMaxCheckin;
+	}
 
 	@Override
 	public String toString() {
-		return "Member [matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + "]";
+		return "Member [matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age
+				+ ", nbCheckin=" + nbCheckin + ", nbTotalCheckin=" + nbTotalCheckin + ", nbMaxCheckin=" + nbMaxCheckin
+				+ "]";
 	}
+
+	
+	
 	
 	
 
