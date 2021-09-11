@@ -9,9 +9,10 @@ import fr.htc.library.entity.Member;
 
 public class BookService {
 
-	private BookDao bookDao = new BookDao();
+	private static BookDao bookDao = new BookDao();
 
 	public Book save(String title, String author, int editionYear) {
+		
 		if (title == null) {
 			System.out.println("Save book aborted : Title is mandatory!!! : " + title.toString());
 			return null;
@@ -33,7 +34,7 @@ public class BookService {
 		return savedBook;
 	}
 
-	public List<Book> findAllBooks() {
+	public static List<Book> findAllBooks() {
 		ArrayList<Book> bookList = new ArrayList<>(bookDao.getAllBook());
 		return bookList;
 	}
