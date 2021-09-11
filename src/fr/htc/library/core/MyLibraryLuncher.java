@@ -3,13 +3,18 @@ package fr.htc.library.core;
 import java.util.List;
 
 import fr.htc.library.entity.Book;
+import fr.htc.library.entity.Member;
 import fr.htc.library.services.BookService;
+import fr.htc.library.services.BorrowBook;
+import fr.htc.library.services.MemberService;
 
 public class MyLibraryLuncher {
 	private static BookService bookService = new BookService();
+	private static MemberService memberService = new MemberService();
+	private static BorrowBook borrowbook = new BorrowBook();
 
 	public static void main(String[] args) {
-		//testSaveBook();
+		// testSaveBook();
 
 		initDatabase();
 
@@ -18,15 +23,37 @@ public class MyLibraryLuncher {
 		List<Book> books = bookService.findAllBooks();
 		for (Book book : books) {
 			System.out.println(book);
+	
 		}
+
+		System.out.println("Voici la liste des Membres enregistrés en base : ");
+
+		List<fr.htc.library.entity.Member> members = memberService.findAllMembers();
+		for (fr.htc.library.entity.Member membre : members) {
+			System.out.println(membre);
+		}
+
 	}
 
 	private static void initDatabase() {
 		insertBookData();
 		insertMemberData();
+
 	}
 
+
 	private static void insertMemberData() {
+
+		memberService.save("drisse", "abbo", 1998,3);
+		memberService.save("risse", "cr7", 1994,2);
+		memberService.save("alex", "driss", 1988,0);
+		memberService.save("tony", "brice", 1978,5);
+		memberService.save("pony", "tinkiwinki", 1998,0);
+		memberService.save("rony", "lala", 1999,2);
+		memberService.save("jwan", "poo", 1968,4);
+		memberService.save("kwan", "messi", 1948,1);
+		memberService.save("assan", "debala", 1997,4);
+
 		// TODO Auto-generated method stub
 
 	}
@@ -71,7 +98,7 @@ public class MyLibraryLuncher {
 		bookService.save("fables de La Fontaine pour réfléchir (Les)", "Pelisse Laetitia", 1987);
 		bookService.save("Vieux metiers et pratiques oubliees en Bourgogne, Nivernais-Morvan, autrefois",
 				"Bertheau Georges", 2013);
-		bookService.save("changelin (Le)", "Lindhom Per August", 19);
+		bookService.save("changelin (Le)", "Lindhom Per August", 2019);
 		bookService.save("Meurtre au champagne", "Christie Agatha", 2005);
 	}
 
@@ -91,6 +118,8 @@ public class MyLibraryLuncher {
 		} else {
 			System.out.println("Book not created yet...");
 		}
+		
+		/////////////////////////////////////////
 
 		// Test : Cas title == null : KO
 		Book savedBook3 = bookService.save("Ce que le jour doit à la nuit", null, 2005);
@@ -109,5 +138,36 @@ public class MyLibraryLuncher {
 		}
 
 	}
+private static void testSaveMember() {
+		
+		//test : cas nom ==null 
+		
+		Member savedMember = memberService.save("Hilaire", "Savary", 58,0);
+		
+		if (savedMember != null) {
+		
+			System.out.println("Member created successfully...");
+		} 
+		else {
+			System.out.println("Member not created yet...");
+		}
+		}
+		//test : cas prenom == null 
+		
+		
+		//test : cas age <18
+		//test : par numéro de cote 
+	
+		private static void testCheckinBook() {
+			
+		}
+
+		public static BorrowBook getBorrowbook() {
+			return borrowbook;
+		}
+
+		public static void setBorrowbook(BorrowBook borrowbook) {
+			MyLibraryLuncher.borrowbook = borrowbook;
+		}
 
 }

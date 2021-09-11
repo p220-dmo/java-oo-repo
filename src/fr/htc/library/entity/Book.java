@@ -6,6 +6,7 @@ public class Book {
 	private String title;
 	private String author;
 	private int editionYear;
+	private boolean status ;
 
 	public Book(String title, String author, int editionYear) {
 		this.title = title;
@@ -13,6 +14,8 @@ public class Book {
 		this.editionYear = editionYear;
 		this.cote = generateCote();
 	}
+
+	
 
 	private String generateCote() {
 		String part1 = "XX";
@@ -55,10 +58,23 @@ public class Book {
 	public String getCote() {
 		return cote;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "Book [cote=" + cote + ", title=" + title + ", author=" + author + ", editionYear=" + editionYear + "]";
+	}
+
+	public void returne() {
+		this.status = true;
+	}
+	
+	public void borrow() {
+		this.status = false;
+	}
+	
+	public boolean isStatus( ) {
+		return this.status;
 	}
 
 }

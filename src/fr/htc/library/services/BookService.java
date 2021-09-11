@@ -8,7 +8,7 @@ import fr.htc.library.entity.Book;
 
 public class BookService {
 
-	private BookDao bookDao = new BookDao();
+	private static BookDao bookDao = new BookDao();
 
 	public Book save(String title, String author, int editionYear) {
 		if (title == null) {
@@ -24,6 +24,7 @@ public class BookService {
 			return null;
 		}
 		//Arrivée ici: je peut enfin créer un livre
+		
 		Book book = new Book(title, author, editionYear);
 		
 		Book savedBook = bookDao.save(book);
@@ -31,9 +32,15 @@ public class BookService {
 		return savedBook;
 	}
 
-	public List<Book> findAllBooks() {
+	public static List<Book> findAllBooks() {
 		ArrayList<Book> bookList = new ArrayList<>(bookDao.getAllBook());
 		return bookList;
 	}
+	
+	public Book findBooksByCote(String cote) {
+		return null;
+		
+	}
+
 
 }
