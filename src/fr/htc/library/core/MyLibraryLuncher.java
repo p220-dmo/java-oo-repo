@@ -25,6 +25,7 @@ public class MyLibraryLuncher {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		System.out.println("Coucou Kahina, j'ai toujours raison ;)");
 		testSaveBook();
 		testGetAllXXX();
 		testCheckOut();
