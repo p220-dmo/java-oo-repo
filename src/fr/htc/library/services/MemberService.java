@@ -25,9 +25,8 @@ public class MemberService {
 			System.out.println("Save member aborted :  age is mandatory!!! : " + age);
 			return null;
 		}
-		if( nbCheckin == 3) {
-			System.out.println("you can't borrow 3 books at the same time " + nbCheckin);
-			return null;
+		if( nbCheckin >= 3) {
+			System.out.println("you can't borrow 3 books at the same time " +nbCheckin);
 		}
 		//Arrivée ici: je peut enfin créer un membre 
 		

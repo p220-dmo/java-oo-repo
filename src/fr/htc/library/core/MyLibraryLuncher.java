@@ -8,6 +8,7 @@ import java.util.List;
 import fr.htc.library.entity.Book;
 import fr.htc.library.entity.Member;
 import fr.htc.library.services.BookService;
+import fr.htc.library.services.CheckinService;
 import fr.htc.library.services.MemberService;
 
 public class MyLibraryLuncher {
@@ -52,7 +53,7 @@ public class MyLibraryLuncher {
 		memberService.save("Marielle", "Ribeiro", 27, 0);
 		memberService.save("Hilaire", "Savary", 58, 0);
 		memberService.save("Rébecca", "Armand", 24, 0);
-		memberService.save("Aimée", "Hebert", 36, 0);
+		memberService.save("Aimée", "Hebert", 16, 0);
 		memberService.save("Marielle", "Ribeiro", 27,1);
 		memberService.save("Hilaire", "Savary", 58,4);
 		memberService.save("Rébecca", "Armand", 24,5);
@@ -155,26 +156,55 @@ private static void insertBookData() {
 		
 		//test : cas nom ==null 
 		
-		Member savedMember = memberService.save("Hilaire", "Savary", 58,0);
+		Member savedMember1 = memberService.save(null, "Savary", 58,0);
 		
-		if (savedMember != null) {
+		if (savedMember1 != null) {
 		
 			System.out.println("Member created successfully...");
 		} 
 		else {
 			System.out.println("Member not created yet...");
-		}
+	
 		}
 		//test : cas prenom == null 
 		
+	Member savedMember2 = memberService.save("Hilaire", null, 58,0);
 		
+		if (savedMember2 != null) {
+		
+			System.out.println("Member created successfully...");
+		} 
+		else {
+			System.out.println("Member not created yet...");
+		
+		}
 		//test : cas age <18
-		//test : par numéro de cote 
+		
+	Member savedMember3 = memberService.save("sdzdfs", "Hebert", 16, 0);
+		
+		if (savedMember3 != null) {
+		
+			System.out.println("Member created successfully...");
+		} 
+		else {
+			System.out.println("Member not created yet...");
+		
+		}
+		
+		//test : par numéro de matricule 
 	
-		private static void testCheckinBook() {
-			
+	Member savedMember4 = memberService.save("Hilaire", null, 58,0);
+		
+		if (savedMember4 != null) {
+		
+			System.out.println("Member created successfully...");
+		} 
+		else {
+			System.out.println("Member not created yet...");
+		
 		}
 		}
+	}
 
 			//test : par numéro de matricule 
 

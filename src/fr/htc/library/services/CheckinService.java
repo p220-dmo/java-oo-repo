@@ -1,14 +1,14 @@
 package fr.htc.library.services;
 
-
 import fr.htc.library.entity.Book;
-import fr.htc.library.entity.Member;
 
 public class CheckinService {
+	
 
-	public Book SearchBook(String cote){
+	public Book CheckinBook(String cote){
 		
 		boolean found = false;
+		
 		boolean success = false;
 		
 		for (Book book : BookService.findAllBooks()){
@@ -38,30 +38,33 @@ public class CheckinService {
 		return null;
 	}
 
-	public void addCheckin() {
-		
-		Member m = findMemberByMaatricule();
-		Book b = findBookByCote();
-		
-		if(m.getNbMaxCheckin()> m.getNbCheckin()) {
-			CheckinService checkinBook = new CheckinService();
-			checkinBook.addCheckin();
+
 	
-			//ajouter le prêt 
-			b.getListCheckin().add(b);
-		}	
-	}
+//	public void addCheckin() {
+//		
+//		Member m = findMemberByMaatricule();
+//		Book b = findBookByCote();
+//		
+//		if(m.getNbMaxCheckin()> m.getNbCheckin()) {
+//			CheckinService checkinBook = new CheckinService();
+//			checkinBook.addCheckin();
+//	
+//			//ajouter le prêt 
+//			b.getListCheckin().add(b);
+//		}	
+//	}
+//
+//	private Member findMemberByMaatricule() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	private Book findBookByCote() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	private Book findBookByCote() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	private Member findMemberByMaatricule() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }
 	
 

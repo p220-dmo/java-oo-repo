@@ -1,5 +1,7 @@
 package fr.htc.library.entity;
 
+import java.util.List;
+
 public class Member {
 
 	private static int cpt = 100;
@@ -7,18 +9,17 @@ public class Member {
 	private String nom;
 	private String prenom;
 	private int age;
-	private int nbCheckin = 0;
+	private int nbCheckin ;
+	private int nbMaxCheckin  ;
 	private int nbTotalCheckin;
-	private int nbMaxCheckin = 3; 
+	private List<Book> CollectionBook;
 	
-
-
-	public Member(String nom, String prenom, int age,int nbTotalCheckin) {
+	public Member(String nom, String prenom, int age,int nbCheckin) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.age = age;
 		this.matricule = generateMatricule();
-		this.nbTotalCheckin = nbTotalCheckin;
+		this.nbCheckin = nbCheckin;
 	
 	}
 
@@ -46,6 +47,14 @@ public class Member {
 		return age;
 	}
 
+	public int getNbTotalCheckin() {
+		return nbTotalCheckin;
+	}
+
+	public void setNbTotalCheckin(int nbTotalCheckin) {
+		this.nbTotalCheckin = nbTotalCheckin;
+	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -55,14 +64,6 @@ public class Member {
 	}
 	
 
-	public int getNbTotalCheckin() {
-		return nbTotalCheckin;
-	}
-
-	public void setNbTotalCheckin(int nbTotalCheckin) {
-		this.nbTotalCheckin = nbTotalCheckin;
-	}
-
 	public int getNbCheckin() {
 		return nbCheckin;
 	}
@@ -70,19 +71,23 @@ public class Member {
 	public void setNbCheckin(int nbCheckin) {
 		this.nbCheckin = nbCheckin;
 	}
-
+	
 	public int getNbMaxCheckin() {
 		return nbMaxCheckin;
+	}
+
+	public void setNbMaxCheckin(int nbMaxCheckin) {
+		this.nbMaxCheckin = nbMaxCheckin;
 	}
 
 	@Override
 	public String toString() {
 		return "Member [matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age
-				+ ", nbCheckin=" + nbCheckin + ", nbTotalCheckin=" + nbTotalCheckin + ", nbMaxCheckin=" + nbMaxCheckin
-				+ "]";
+				+ ", nbCheckin=" + nbCheckin + ", nbMaxCheckin=" + nbMaxCheckin + ", nbTotalCheckin=" + nbTotalCheckin
+				+ ", CollectionBook=" + CollectionBook + "]";
 	}
 
-	
+
 	
 	
 	
