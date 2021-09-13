@@ -6,6 +6,8 @@ public class Book {
 	private String title;
 	private String author;
 	private int editionYear;
+	
+	private Member borrower;
 
 	public Book(String title, String author, int editionYear) {
 		this.title = title;
@@ -55,10 +57,38 @@ public class Book {
 	public String getCote() {
 		return cote;
 	}
+	
+	public Member getBorrower() {
+		return borrower;
+	}
+
+	public void setBorrower(Member borrower) {
+		this.borrower = borrower;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Book [cote=" + cote + ", title=" + title + ", author=" + author + ", editionYear=" + editionYear + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Book [cote=");
+		builder.append(cote);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", author=");
+		builder.append(author);
+		builder.append(", editionYear=");
+		builder.append(editionYear);
+		builder.append(", borrower=");
+		builder.append(this.borrower != null ? this.borrower.getMatricule() : "------");
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public boolean isAvailable() {
+		if(this.borrower == null) {
+			return true;
+		}
+		return false;
 	}
 
 }

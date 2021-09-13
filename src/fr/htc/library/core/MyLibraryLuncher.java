@@ -3,21 +3,128 @@ package fr.htc.library.core;
 import java.util.List;
 
 import fr.htc.library.entity.Book;
+import fr.htc.library.entity.Member;
 import fr.htc.library.services.BookService;
+import fr.htc.library.services.CheckoutService;
+import fr.htc.library.services.MemberService;
+import fr.htc.library.services.impl.BookServiceImpl;
+import fr.htc.library.services.impl.CheckOutServiceImpl;
+import fr.htc.library.services.impl.MemberServiceImpl;
 
 public class MyLibraryLuncher {
-	private static BookService bookService = new BookService();
+	private static BookService bookService = new BookServiceImpl();
+	private static MemberService memberService = new MemberServiceImpl();
+	private static CheckoutService checkoutService = new CheckOutServiceImpl();
 
-	public static void main(String[] args) {
-		//testSaveBook();
-
+	static {
 		initDatabase();
+	}
+	
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		testSaveBook();
+		testGetAllXXX();
+		testCheckOut();
+		testCheckIn();
+		testAvailableBook();
 
+	}
+
+	private static void testAvailableBook() {
+		final String matricule =  "RA100";
+		final String cote1 =  "AU11-10";
+		final String cote2 =  "EG11-11";
+		final String cote3 =  "HA11-12";
+		final String cote4 =  "IB11-13";
+		
+		List<Book> availableBooks = checkoutService.findAvailableBooks();
+		System.out.println(availableBooks.size());
+		System.out.println(checkoutService.findUnavailableBooks().size());
+		
+		System.out.println(checkoutService.checkOut(matricule, cote1));
+		System.out.println(checkoutService.checkOut(matricule, cote2));
+		
+		availableBooks = checkoutService.findAvailableBooks();
+		System.out.println(availableBooks.size());
+		System.out.println(checkoutService.findUnavailableBooks().size());
+		
+		
+		
+		
+	}
+
+	private static void testCheckIn() {
+		final String matricule =  "RA100";
+		final String matricule2 =  "AH101";
+		
+		final String cote1 =  "AU11-10";
+		System.out.println(checkoutService.checkOut(matricule, cote1));
+		System.out.println(checkoutService.checkIn(matricule2, cote1));
+		
+		final String cote2 =  "EG11-11";
+		System.out.println(checkoutService.checkOut(matricule, cote2));
+		System.out.println(checkoutService.checkIn(matricule2, cote2));
+		
+		final String cote3 =  "HA11-12";
+		System.out.println(checkoutService.checkOut(matricule, cote3));
+		System.out.println(checkoutService.checkIn(matricule2, cote3));
+		
+		final String cote4 =  "IB11-13";
+		System.out.println(checkoutService.checkOut(matricule, cote4));
+		
+		System.out.println(checkoutService.checkIn(matricule, cote1));
+		
+		System.out.println(checkoutService.checkOut(matricule, cote4));
+		
+	}
+
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unused")
+	private static void testCheckOut() {
+		final String matricule =  "RA100";
+		final String cote1 =  "AU11-10";
+		
+		Book book = bookService.getBookByCote(cote1);
+		System.out.println(book);
+
+		checkoutService.checkOut(matricule, cote1);
+		System.out.println(memberService.getMemberByMatricule(matricule));
+		
+		
+		
+		final String cote2 =  "EG11-11";
+		checkoutService.checkOut(matricule, cote2);
+		System.out.println(memberService.getMemberByMatricule(matricule));
+		final String cote3 =  "HA11-12";
+		checkoutService.checkOut(matricule, cote3);
+		
+		System.out.println(memberService.getMemberByMatricule(matricule));
+		
+		final String cote4 =  "IB11-13";
+		checkoutService.checkOut(matricule, cote4);
+		
+	}
+
+	/**
+	 * 
+	 */
+	private static void testGetAllXXX() {
 		System.out.println("Voici la liste des livre enregistrés en base : ");
-
 		List<Book> books = bookService.findAllBooks();
 		for (Book book : books) {
 			System.out.println(book);
+		}
+		
+		
+		System.out.println("Voici la liste des member enregistrés en base : ");
+		List<Member> members = memberService.findAllMembers();
+		for (Member member : members) {
+			System.out.println(member);
 		}
 	}
 
@@ -27,15 +134,32 @@ public class MyLibraryLuncher {
 	}
 
 	private static void insertMemberData() {
-		// TODO Auto-generated method stub
+		
+		memberService.save("Rébecca", "Armand", 24);
+		memberService.save("Aimée", "Hebert", 36);
+		memberService.save("Marielle", "Ribeiro", 27);
+		memberService.save("Hilaire", "Savary", 58);
+		memberService.save("Rébecca", "Armand", 24);
+		memberService.save("Aimée", "Hebert", 36);
+		memberService.save("Marielle", "Ribeiro", 27);
+		memberService.save("Hilaire", "Savary", 58);
+		memberService.save("Rébecca", "Armand", 24);
+		memberService.save("Aimée", "Hebert", 36);
+		memberService.save("Marielle", "Ribeiro", 27);
+		memberService.save("Hilaire", "Savary", 58);
+		memberService.save("Rébecca", "Armand", 24);
+		memberService.save("Aimée", "Hebert", 12);
+		memberService.save("Marielle", "Ribeiro", 27);
+		memberService.save("Hilaire", "Savary", 58);
+		memberService.save("Rébecca", "Armand", 24);
 
 	}
 
-	private static void insertBookData() {
-		bookService.save("Titre_200a", "Auteur_principal_qualificatif_700c", 2011);
-		bookService.save("L'eau des anges", "Egémar Béatrice", 2011);
-		bookService.save("Quand on parle du loup", "Harrison Lisi", 2011);
-		bookService.save("étang aux libellules (L')", "Ibbotson Eva", 2011);
+	private static void insertBookData() { 
+		bookService.save("Titre_200a", "Auteur_principal_qualificatif_700c", 2011); 
+		bookService.save("L'eau des anges", "Egémar Béatrice", 2011); 
+		bookService.save("Quand on parle du loup", "Harrison Lisi", 2011); 
+		bookService.save("étang aux libellules (L')", "Ibbotson Eva", 2011); 
 		bookService.save("Avant les ténèbres", "Cluzeau Nicolas", 2009);
 		bookService.save("La boussole du Club des cinq", "Blyton Enid", 2009);
 		bookService.save("Momo", "Ende Michael", 2011);
@@ -71,7 +195,7 @@ public class MyLibraryLuncher {
 		bookService.save("fables de La Fontaine pour réfléchir (Les)", "Pelisse Laetitia", 1987);
 		bookService.save("Vieux metiers et pratiques oubliees en Bourgogne, Nivernais-Morvan, autrefois",
 				"Bertheau Georges", 2013);
-		bookService.save("changelin (Le)", "Lindhom Per August", 19);
+		bookService.save("changelin (Le)", "Lindhom Per August", 2019);
 		bookService.save("Meurtre au champagne", "Christie Agatha", 2005);
 	}
 
