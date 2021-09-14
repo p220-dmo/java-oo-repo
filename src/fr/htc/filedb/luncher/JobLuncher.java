@@ -12,25 +12,27 @@ public class JobLuncher {
 	private static ClientDao clientDao = new ClientDao();
 	
 	public static void main(String[] args) {
-		
-		if(args.length != 1 ) {
-			System.out.println("Missing argument : file path");
-			return;
-		}
-		
-		String filePath = args[0];
 				
 		//Parse File 
-		List<String> csvLines = InputFileReader.readFile("data/" +filePath);
+		List<String> csvLines = InputFileReader.readFile("data/clients.csv");
 		
 		List<Client> clients = new ArrayList<Client>();
 		
 		for (String csvLine : csvLines) {
-			clients.add(Client.parseLine(csvLine));
+			Client client = Client.parseLine(csvLine);
+			clients.add(client);
 		}
 		
 		for (Client client : clients) {
 			clientDao.save(client);
 		}
-	}
+		
+		//La liste des client inserés est : 
+		
+		List<Client> insertedClients = clientDao.findAll();
+		
+		for (Client client : insertedClients) {
+			System.out.println(client);
+		}
+		}
 }
